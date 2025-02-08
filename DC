@@ -1,21 +1,63 @@
-const bdaData = [
-    {
-        lat: 38.9072,
-        lng: -77.0369,
-        frequencyRange: "769-775 MHz",
-        callSign: "WDC123"
-    },
-    {
-        lat: 38.8951,
-        lng: -77.0364,
-        frequencyRange: "769-775 MHz",
-        callSign: "WDC456"
-    },
-    {
-        lat: 38.9047,
-        lng: -77.0164,
-        frequencyRange: "769-775 MHz",
-        callSign: "WDC789"
-    },
-    // Add more BDA locations as needed
-];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Washington, D.C. P25 BDA Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        #map { height: 600px; }
+        .info { padding: 10px; background: white; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Washington, D.C. P25 Bidirectional Amplifiers (BDAs)</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Sample data for BDAs in Washington, D.C.
+        const bdaData = [
+            {
+                lat: 38.9072,
+                lng: -77.0369,
+                frequencyRange: "769-775 MHz",
+                callSign: "WDC123"
+            },
+            {
+                lat: 38.8951,
+                lng: -77.0364,
+                frequencyRange: "769-775 MHz",
+                callSign: "WDC456"
+            },
+            {
+                lat: 38.9047,
+                lng: -77.0164,
+                frequencyRange: "769-775 MHz",
+                callSign: "WDC789"
+            },
+            // Add more BDA locations as needed
+        ];
+
+        // Initialize the map
+        const map = L.map('map').setView([38.9072, -77.0369], 12);
+
+        // Add a tile layer (OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add markers for each BDA
+        bdaData.forEach(bda => {
+            const marker = L.marker([bda.lat, bda.lng]).addTo(map);
+            marker.bindPopup(`
+                <div class="info">
+                    <strong>Frequency Range:</strong> ${bda.frequencyRange}<br>
+                    <strong>Call Sign:</strong> ${bda.callSign}
+                </div>
+            `);
+        });
+    </script>
+</body>
+</html>
+
