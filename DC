@@ -1,0 +1,21 @@
+const bdaData = [
+    {
+        lat: 38.9072,
+        lng: -77.0369,
+        frequencyRange: "769-775 MHz",
+        callSign: "WDC123"
+    },
+    {
+        lat: 38.8951,
+        lng: -77.0364,
+        frequencyRange: "769-775 MHz",
+        callSign: "WDC456"
+    },
+    {
+        lat: 38.9047,
+        lng: -77.0164,
+        frequencyRange: "769-775 MHz",
+        callSign: "WDC789"
+    },
+    // Add more BDA locations as needed
+];
